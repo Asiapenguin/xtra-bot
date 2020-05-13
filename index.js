@@ -1,13 +1,15 @@
 require('dotenv').config();
 import Discord from 'discord.js';
-
 const client = new Discord.Client();
-import { embedRulesMessage } from './constants/rules/rules';
+import { embedRulesMessage } from './constants/messages/rules';
 import MessageHandler from './handlers/message-handler';
-const messageHandler = new MessageHandler();
+import StartupHandler from './handlers/startup-handler';
+
+const messageHandler = new MessageHandler(client);
+const startupHandler = new StartupHandler(client);
 
 client.once('ready', () => {
-	console.log('Ready!');
+  startupHandler.handle();
 });
 
 client.on('message', message => {
@@ -19,3 +21,7 @@ client.on('guildMemberAdd', member => {
 })
 
 client.login(process.env.BOT_TOKEN);
+
+export const getClient = () => {
+  return client;
+}
