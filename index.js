@@ -1,15 +1,20 @@
 require('dotenv').config();
-const Discord = require('discord.js');
+import Discord from 'discord.js';
+import config from './config.json';
+
 const client = new Discord.Client();
+import { embedRulesMessage } from './constants/rules/rules';
 
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
 client.on('message', message => {
-  if (message.CONENT == 'PING') {
-    message.channel.send('PONG')
-  }
+  M
+})
+
+client.on('guildMemberAdd', member => {
+  member.send(embedRulesMessage)
 })
 
 client.login(process.env.BOT_TOKEN);
