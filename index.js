@@ -8,7 +8,7 @@ import StartupHandler from "./handlers/startup-handler";
 const messageHandler = new MessageHandler(client);
 const startupHandler = new StartupHandler(client);
 
-client.once("ready", () => {
+client.on("ready", () => {
   startupHandler.handle();
 });
 
@@ -22,3 +22,5 @@ client.on("guildMemberAdd", (member) => {
 });
 
 client.login(process.env.BOT_TOKEN);
+
+export const getClient = () => { return client; }
