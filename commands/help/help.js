@@ -1,7 +1,7 @@
 import { COMMANDS_DESCRIPTION, COMMANDS_COMMAND } from "../commands/commands";
 import { FC_DESCRIPTION, FC_COMMAND } from "../fc/fc";
-import { PING_DESCRIPTION } from "../ping/ping";
-import { RULES_DESCRIPTION } from "../rules/rules";
+import { PING_DESCRIPTION, PING_COMMAND } from "../ping/ping";
+import { RULES_DESCRIPTION, RULES_COMMAND } from "../rules/rules";
 
 export const HELP_COMMAND = "help";
 export const HELP_DESCRIPTION = `\`!help <command>\`: the bot will post usage instructions for the \`command\` given`;
