@@ -4,8 +4,10 @@ export default class StartupHandler {
   }
 
   handle() {
-    const users = this.client.users.cache.filter(user => user.bot == false)
-    const channels = this.client.channels.cache.filter(channel => channel.type !== 'category');
+    const users = this.client.users.cache.filter((user) => user.bot == false);
+    const channels = this.client.channels.cache.filter(
+      (channel) => channel.type !== "category"
+    );
     console.log(`Started, ${users.size} users and ${channels.size} channels`);
   }
 }

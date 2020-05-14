@@ -1,8 +1,6 @@
 import CommandHandler from "./command-handler";
 import config from "../config.json";
 
-const commandHandler = new CommandHandler();
-
 export default class MessageHandler {
   constructor(client) {
     this.client = client;
@@ -11,6 +9,9 @@ export default class MessageHandler {
   handle(message) { 
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
+    
+    const author = message.author;
+    const channel = message.channel;
 
     const args = message.content
       .slice(config.prefix.length)
@@ -18,6 +19,7 @@ export default class MessageHandler {
       .split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    commandHandler.handle(command, message);
+    let commandHandler = new CommandHandler(command, args, channel, author, this.client);
+    commandHandler.handle();
   }
 }
