@@ -42,7 +42,6 @@ export default class MessageEmbedService {
       .setColor("#0099ff")
       .setAuthor("Here is a list of rules to abide to")
       .setTitle("Welcome to <<Xtra>> Discord")
-      .setURL("https://discord.js.org/")
       .setDescription(
         "Violations of these rules can result in kicking both in game and on Discord."
       )
