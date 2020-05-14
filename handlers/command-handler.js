@@ -37,7 +37,7 @@ export default class CommandHandler {
   }
 
   unrecognized(command, channel) {
-    channel.send(`${command} is not a valid command`);
+    return channel.send(`I don't know how to use \`${command}\``);
   }
 
   help(channel, args) {
