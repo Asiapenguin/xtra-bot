@@ -1,4 +1,5 @@
-# Extra Lazy <<Xtra>> Free Company Discord Bot a.k.a. Sloth
+# Extra Lazy \<\<Xtra\>\> FFXIV Discord Bot
+Home of Sloth 🦥
 
 ## Permissions
 
