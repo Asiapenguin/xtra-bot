@@ -1,6 +1,18 @@
 import Discord from "discord.js";
 import UrlService from "./url.service";
 import { getClient } from "../index";
+import {
+  COMMANDS_DESCRIPTION,
+  COMMANDS_COMMAND,
+  COMMAND_PREFIX,
+  FC_COMMAND,
+  FC_DESCRIPTION,
+  HELP_DESCRIPTION,
+  HELP_COMMAND,
+  PING_DESCRIPTION,
+  RULES_COMMAND,
+  RULES_DESCRIPTION,
+} from "../commands";
 
 export default class MessageEmbedService {
   constructor() {
@@ -15,27 +27,27 @@ export default class MessageEmbedService {
       .setDescription("Below is a list of available commands")
       .addFields(
         {
-          name: `**!commands**`,
-          value: `\`!commands\`: the bot will post all the commands available to use`
+          name: `**${COMMAND_PREFIX}${COMMANDS_COMMAND}**`,
+          value: COMMANDS_DESCRIPTION,
         },
         {
-          name: `**!fc**`,
-          value: `\`!fc <name?>\`: the bot will use Lodestone's data and post about <<Xtra>> if free company \`name\` is not given`
+          name: `**${COMMAND_PREFIX}${FC_COMMAND}**`,
+          value: FC_DESCRIPTION,
         },
         {
-          name: `**!help**`,
-          value: `\`!help <command>\`: the bot will post usage instructions for the \`command\` given`
+          name: `**${COMMAND_PREFIX}${HELP_COMMAND}**`,
+          value: HELP_DESCRIPTION,
         },
         {
-          name: `**!ping**`,
-          value: `\`!ping\`: the bot will message you directly with \`pong\``
+          name: `**${COMMAND_PREFIX}${PING_DESCRIPTION}**`,
+          value: PING_DESCRIPTION,
         },
         {
-          name: `**!rules**`,
-          value: `\`!rules\`: the bot will post the rules of the server`
-        },
+          name: `**${COMMAND_PREFIX}${RULES_COMMAND}**`,
+          value: RULES_DESCRIPTION,
+        }
       )
-      .setFooter("🦥: That was a lot of explaining")
+      .setFooter("🦥: That was a lot of explaining");
   }
   static getRulesMessage() {
     return new Discord.MessageEmbed()

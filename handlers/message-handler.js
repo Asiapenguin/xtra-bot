@@ -1,5 +1,5 @@
 import CommandHandler from "./command-handler";
-import config from "../config.json";
+import { COMMAND_PREFIX } from "../commands";
 
 export default class MessageHandler {
   constructor(client) {
@@ -8,13 +8,13 @@ export default class MessageHandler {
 
   handle(message) { 
     if (message.author.bot) return;
-    if (message.content.indexOf(config.prefix) !== 0) return;
+    if (message.content.indexOf(COMMAND_PREFIX) !== 0) return;
     
     const author = message.author;
     const channel = message.channel;
 
     const args = message.content
-      .slice(config.prefix.length)
+      .slice(COMMAND_PREFIX.length)
       .trim()
       .split(/ +/g);
     const command = args.shift().toLowerCase();
