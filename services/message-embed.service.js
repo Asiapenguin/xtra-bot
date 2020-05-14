@@ -2,13 +2,14 @@ import Discord from "discord.js";
 import UrlService from "./url.service";
 import { getClient } from "../index";
 import {
-  COMMANDS_DESCRIPTION,
-  COMMANDS_COMMAND,
   COMMAND_PREFIX,
+  COMMANDS_COMMAND,
+  COMMANDS_DESCRIPTION,
   FC_COMMAND,
   FC_DESCRIPTION,
-  HELP_DESCRIPTION,
   HELP_COMMAND,
+  HELP_DESCRIPTION,
+  PING_COMMAND,
   PING_DESCRIPTION,
   RULES_COMMAND,
   RULES_DESCRIPTION,
@@ -39,7 +40,7 @@ export default class MessageEmbedService {
           value: HELP_DESCRIPTION,
         },
         {
-          name: `**${COMMAND_PREFIX}${PING_DESCRIPTION}**`,
+          name: `**${COMMAND_PREFIX}${PING_COMMAND}**`,
           value: PING_DESCRIPTION,
         },
         {
