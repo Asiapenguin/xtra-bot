@@ -17,8 +17,11 @@ client.on("message", (message) => {
 });
 
 client.on("guildMemberAdd", (member) => {
+  // TODO: Make handler
   let rulesMessageEmbed = MessageEmbedService.getRulesMessage();
-  return member.send(rulesMessageEmbed);
+  member.send(rulesMessageEmbed);
+  member.send("Please change your nickname to your in-game name to help us identify each other!");
+  return;
 });
 
 client.login(process.env.BOT_TOKEN);
