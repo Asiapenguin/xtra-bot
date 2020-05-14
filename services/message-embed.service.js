@@ -14,51 +14,43 @@ export default class MessageEmbedService {
       .setTitle("Welcome to <<Xtra>> Discord")
       .setURL("https://discord.js.org/")
       .setDescription(
-        "Violations of these rules can result in kicking and banning both in game and on Discord."
+        "Violations of these rules can result in kicking both in game and on Discord."
       )
       .addFields(
         {
-          name: "Rule 1",
+          name: "**Be Kind and Courteous**",
           value:
-            "Be nice and respectful to everyone. No racial slurs. Talk properly.",
+            "We're all in this together to create a welcoming environment. Let's treat everyone with respect. Healthy debates are natural, but kindness is required. Treat others the way you would like to be treated!",
         },
         {
-          name: "Rule 2",
+          name: "**Bullying, Harassment, Hate Speech**",
           value:
-            "No creeping, no bullying far more than simple jokes. If you haven't got anything nice to say, don't say it.",
+            "Bulying of any kind is not allowed, and degrading comments about things like race, religion, culture, sexual orientation, gender, or identity will not be tolerated. Punishment will be enforced even via DM. No bait, no provoking others, no taunting.",
         },
         {
-          name: "Rule 3",
+          name: "**Moderators**",
           value:
-            "Try to be courteous to the moderators, not sharing the same opinion doesn't mean you should be rude.",
+            "Please be courteous to the moderators, not sharing the same opinion doesn't mean you are entitled to be rude.",
         },
         {
-          name: "Rule 4",
-          value: "a",
+          name: "**Chat/Channel**",
+          value:
+            "Please use the respective channels accordingly. Do not drag personal conversations or drama elswhere in here.",
         },
         {
-          name: "Rule 5",
-          value: "a",
+          name: "**No Promotions or Spam**",
+          value:
+            "Give more than you take to this group. Self-promotion, spam, and ireelevant links are not allowed. This incudes but not limited to pages, groups, servers.",
         },
         {
-          name: "Rule 6",
-          value: "a",
+          name: "**Respect Everyone's Privacy**",
+          value:
+            "Being part of this group requires mutual trust. Authentic, expressive discussions make groups great, but may also be sensitive and private. What's shared in the group should stay in the group.",
         },
         {
-          name: "Rule 7",
-          value: "a",
-        },
-        {
-          name: "Rule 8",
-          value: "a",
-        },
-        {
-          name: "Rule 9",
-          value: "a",
-        },
-        {
-          name: "Rule 10",
-          value: "a",
+          name: "**Further Updates to Rules**",
+          value:
+            "We reserve the right to include new rules and post them whenever they are added.",
         }
       );
   }
