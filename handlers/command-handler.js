@@ -18,6 +18,12 @@ export default class CommandHandler {
       case "ping":
         this.ping(this.author);
         break;
+      case "help":
+        this.help(this.channel, this.args);
+        break;
+      case "commands":
+        this.commands(this.channel);
+        break;
       case "rules":
         this.rules(this.channel);
         break;
@@ -25,17 +31,57 @@ export default class CommandHandler {
         this.fc(this.channel, this.args);
         break;
       default:
+        this.unrecognized(this.command, this.channel);
         break;
     }
   }
 
+  unrecognized(channel) {
+    channel.send(`${this.command} is not a valid command`);
+  }
+
+  help(channel, args) {
+    if (args.length == 0) {
+      return channel.send(`Correct usage of this command is: \`!help <command>\` You can use the command \`!commands\` to list all available commands`);
+    }
+
+    let message = "";
+    switch(args[0]) {
+      case "ping":
+        message = `\`!ping\`: the bot will message you directly with \`pong\``;
+        break;
+      case "rules":
+        message = `\`!rules\`: the bot will post the rules of the server`
+        break;
+      case "fc":
+        message = `\`!fc <name?>\`: the bot will use Lodestone's data and post about <<Xtra>> if free company \`name\` is not given`
+        break;
+      case "commands":
+        message = `\`!commands\`: the bot will post all the commands available to use`
+        break;
+      case "help":
+        message = `\`!help <command>\`: the bot will post usage instructions for the \`command\` given`
+        break;
+      default:
+        message = "Unknown command"
+        break;
+    }
+
+    return channel.send(message);
+  }
+
+  commands(channel) {
+    let commandsMessageEmbed = MessageEmbedService.getCommandsMessage();
+    return channel.send(commandsMessageEmbed);
+  }
+
   ping(author) {
-    author.send("pong");
+    return author.send("pong");
   }
 
   rules(channel) {
     let rulesMessageEmbed = MessageEmbedService.getRulesMessage();
-    channel.send(rulesMessageEmbed);
+    return channel.send(rulesMessageEmbed);
   }
 
   async fc(channel, args) {
@@ -53,6 +99,6 @@ export default class CommandHandler {
     let fcInformation = LodestoneScraperService.getFreeCompanyInformation(html);
 
     let embedFreeCompanyMessage = MessageEmbedService.getFreeCompanyInformationMessage(fcInformation);
-    channel.send(embedFreeCompanyMessage)
+    return channel.send(embedFreeCompanyMessage)
   }
 }

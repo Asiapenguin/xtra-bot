@@ -7,6 +7,36 @@ export default class MessageEmbedService {
     this.client = getClient();
   }
 
+  static getCommandsMessage() {
+    return new Discord.MessageEmbed()
+      .setColor("#0099ff")
+      .setAuthor("<<Xtra>> Discord Bot Commands")
+      .setTitle("Lazy Sloth knows how to do these things at least 🦥")
+      .setDescription("Below is a list of available commands")
+      .addFields(
+        {
+          name: `**!commands**`,
+          value: `\`!commands\`: the bot will post all the commands available to use`
+        },
+        {
+          name: `**!fc**`,
+          value: `\`!fc <name?>\`: the bot will use Lodestone's data and post about <<Xtra>> if free company \`name\` is not given`
+        },
+        {
+          name: `**!help**`,
+          value: `\`!help <command>\`: the bot will post usage instructions for the \`command\` given`
+        },
+        {
+          name: `**!ping**`,
+          value: `\`!ping\`: the bot will message you directly with \`pong\``
+        },
+        {
+          name: `**!rules**`,
+          value: `\`!rules\`: the bot will post the rules of the server`
+        },
+      )
+      .setFooter("🦥: That was a lot of explaining")
+  }
   static getRulesMessage() {
     return new Discord.MessageEmbed()
       .setColor("#0099ff")

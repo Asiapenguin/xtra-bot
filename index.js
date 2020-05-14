@@ -9,16 +9,16 @@ const messageHandler = new MessageHandler(client);
 const startupHandler = new StartupHandler(client);
 
 client.on("ready", () => {
-  startupHandler.handle();
+  return startupHandler.handle();
 });
 
 client.on("message", (message) => {
-  messageHandler.handle(message);
+  return messageHandler.handle(message);
 });
 
 client.on("guildMemberAdd", (member) => {
   let rulesMessageEmbed = MessageEmbedService.getRulesMessage();
-  member.send(rulesMessageEmbed);
+  return member.send(rulesMessageEmbed);
 });
 
 client.login(process.env.BOT_TOKEN);
