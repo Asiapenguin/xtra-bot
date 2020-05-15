@@ -12,14 +12,11 @@ export const FC_DESCRIPTION = `\`!fc <name?>\`: the bot will use Lodestone's dat
 export const FC_COMMAND = "fc";
 
 export const fc = async (channel, args) => {
-  let url = `${UrlService.getBaseUrl()}/lodestone/freecompany/?q=${FREE_COMPANY_NAME.replace(
-    " ",
-    "+"
-  )}&worldname=${FREE_COMPANY_SERVER}`;
+  let url = UrlService.getFreeCompanySearchUrl(FREE_COMPANY_NAME, FREE_COMPANY_SERVER);
 
   if (args.length !== 0) {
     let freeCompanyNameSearch = args.join("+");
-    url = `${UrlService.getBaseUrl()}/lodestone/freecompany/?q=${freeCompanyNameSearch}&worldname=${FREE_COMPANY_SERVER}`;
+    url = UrlService.getFreeCompanySearchUrl(freeCompanyNameSearch, FREE_COMPANY_SERVER);
   }
 
   let html = await (await Axios.get(url)).data;

@@ -50,6 +50,7 @@ export default class MessageEmbedService {
       )
       .setFooter("🦥: That was a lot of explaining");
   }
+
   static getRulesMessage() {
     return new Discord.MessageEmbed()
       .setColor("#0099ff")
@@ -91,8 +92,7 @@ export default class MessageEmbedService {
         },
         {
           name: "**Further Updates to Rules**",
-          value:
-            "We reserve the right to include new rules and post them whenever they are added.",
+          value: "We reserve the right to include new rules and post them whenever they are added.",
         }
       );
   }
@@ -108,10 +108,8 @@ export default class MessageEmbedService {
       .setColor("#00db0e")
       .setTitle(information.name)
       .setThumbnail(information.crest)
-      .setDescription(
-        `With ${information.grandCompany} on ${information.server}`
-      )
-      .setURL(UrlService.getBaseUrl() + information.link)
+      .setDescription(`With ${information.grandCompany} on ${information.server}`)
+      .setURL(information.link)
       .addFields(
         {
           name: "Members",
@@ -136,6 +134,16 @@ export default class MessageEmbedService {
           inline: true,
         }
       )
+      .setFooter("Fetched by 🦥");
+  }
+
+  static getNewTopicMessage(topic) {
+    return new Discord.MessageEmbed()
+      .setColor("#00db0e")
+      .setAuthor("⭐New Topic")
+      .setTitle(topic.title)
+      .setURL(topic.link)
+      .setImage(topic.image)
       .setFooter("Fetched by 🦥");
   }
 }
