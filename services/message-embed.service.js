@@ -14,6 +14,14 @@ import {
   RULES_COMMAND,
   RULES_DESCRIPTION,
 } from "../commands";
+import {
+  MAINTENANCE_EMBED_COLOR,
+  TOPIC_EMBED_COLOR,
+  SUCCESS_EMBED_COLOR,
+  ERROR_EMBED_COLOR,
+  PRIMARY_EMBED_COLOR,
+  UPDATE_EMBED_COLOR,
+} from "../constants/constants";
 
 export default class MessageEmbedService {
   constructor() {
@@ -22,7 +30,7 @@ export default class MessageEmbedService {
 
   static getCommandsMessage() {
     return new Discord.MessageEmbed()
-      .setColor("#0099ff")
+      .setColor(PRIMARY_EMBED_COLOR)
       .setAuthor("<<Xtra>> Discord Bot Commands")
       .setTitle("Lazy Sloth knows how to do these things at least 🦥")
       .setDescription("Below is a list of available commands")
@@ -53,7 +61,7 @@ export default class MessageEmbedService {
 
   static getRulesMessage() {
     return new Discord.MessageEmbed()
-      .setColor("#0099ff")
+      .setColor(PRIMARY_EMBED_COLOR)
       .setAuthor("Here is a list of rules to abide to")
       .setTitle("Welcome to <<Xtra>> Discord")
       .setDescription(
@@ -100,12 +108,12 @@ export default class MessageEmbedService {
   static getFreeCompanyInformationMessage(information) {
     if (Object.keys(information).indexOf("error") > -1)
       return new Discord.MessageEmbed()
-        .setColor("#D00000")
+        .setColor(ERROR_EMBED_COLOR)
         .setDescription("❌ " + information.error)
         .setFooter("🦥: You wasted my time 😪");
 
     return new Discord.MessageEmbed()
-      .setColor("#00db0e")
+      .setColor(SUCCESS_EMBED_COLOR)
       .setTitle(information.name)
       .setThumbnail(information.crest)
       .setDescription(`With ${information.grandCompany} on ${information.server}`)
@@ -139,11 +147,29 @@ export default class MessageEmbedService {
 
   static getNewTopicMessage(topic) {
     return new Discord.MessageEmbed()
-      .setColor("#00db0e")
+      .setColor(TOPIC_EMBED_COLOR)
       .setAuthor("⭐New Topic")
       .setTitle(topic.title)
       .setURL(topic.link)
       .setImage(topic.image)
+      .setFooter("Fetched by 🦥");
+  }
+
+  static getNewMaintenanceMessage(maintenance) {
+    return new Discord.MessageEmbed()
+      .setColor(MAINTENANCE_EMBED_COLOR)
+      .setAuthor("🛠️ New Maintenance")
+      .setTitle(maintenance.title)
+      .setURL(maintenance.link)
+      .setFooter("Fetched by 🦥");
+  }
+
+  static getNewUpdateMessage(update) {
+    return new Discord.MessageEmbed()
+      .setColor(UPDATE_EMBED_COLOR)
+      .setAuthor("✨ New Update")
+      .setTitle(update.title)
+      .setURL(update.link)
       .setFooter("Fetched by 🦥");
   }
 }
