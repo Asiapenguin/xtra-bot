@@ -1,4 +1,5 @@
 import * as Commands from "../commands";
+import { PING_COMMAND, HELP_COMMAND, COMMANDS_COMMAND, RULES_COMMAND, FC_COMMAND, WORLDSTATUS_COMMAND } from "../commands";
 
 export default class CommandHandler {
   constructor(command, args, channel, author, client) {
@@ -11,22 +12,22 @@ export default class CommandHandler {
 
   handle() {
     switch (this.command) {
-      case "ping":
+      case PING_COMMAND:
         Commands.ping(this.author);
         break;
-      case "help":
+      case HELP_COMMAND:
         Commands.help(this.channel, this.args);
         break;
-      case "commands":
+      case COMMANDS_COMMAND:
         Commands.commands(this.channel);
         break;
-      case "rules":
+      case RULES_COMMAND:
         Commands.rules(this.channel);
         break;
-      case "fc":
+      case FC_COMMAND:
         Commands.fc(this.channel, this.args);
         break;
-      case "worldstatus":
+      case WORLDSTATUS_COMMAND:
         Commands.worldstatus(this.channel, this.args);
         break;
       default:

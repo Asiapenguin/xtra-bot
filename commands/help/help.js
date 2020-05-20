@@ -5,7 +5,7 @@ import { RULES_DESCRIPTION, RULES_COMMAND } from "../rules/rules";
 import { WORLDSTATUS_COMMAND, WORLDSTATUS_DESCRIPTION } from "../worldstatus/worldstatus";
 
 export const HELP_COMMAND = "help";
-export const HELP_DESCRIPTION = `\`!help <command>\`: the bot will post usage instructions for the \`command\` given`;
+export const HELP_DESCRIPTION = `\`!${HELP_COMMAND} <command>\`: the bot will post usage instructions for the \`command\` given`;
 export const HELP_COMMAND_ERROR = `Correct usage of this command is: \`!help <command>\` You can use the command \`!commands\` to list all available commands`;
 
 export const help = (channel, args) => {
