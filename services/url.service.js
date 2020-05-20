@@ -22,7 +22,7 @@ export default class UrlService {
     return `${this.getBaseUrl()}/lodestone/category/3`;
   }
 
-  static getLodestoneServerStatusUrl() {
+  static getLodestoneWorldStatusUrl() {
     return `${this.getBaseUrl()}/lodestone/worldstatus`;
   }
 }

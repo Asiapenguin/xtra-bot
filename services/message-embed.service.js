@@ -1,5 +1,4 @@
 import Discord from "discord.js";
-import UrlService from "./url.service";
 import { getClient } from "../index";
 import {
   COMMAND_PREFIX,
@@ -13,8 +12,8 @@ import {
   PING_DESCRIPTION,
   RULES_COMMAND,
   RULES_DESCRIPTION,
-  SERVERSTATUS_COMMAND,
-  SERVERSTATUS_DESCRIPTION,
+  WORLDSTATUS_COMMAND,
+  WORLDSTATUS_DESCRIPTION,
 } from "../commands";
 import { SUCCESS_EMBED_COLOR, ERROR_EMBED_COLOR } from "../constants/constants";
 
@@ -51,8 +50,8 @@ export default class MessageEmbedService {
           value: RULES_DESCRIPTION,
         },
         {
-          name: `**${COMMAND_PREFIX}${SERVERSTATUS_COMMAND}**`,
-          value: SERVERSTATUS_DESCRIPTION,
+          name: `**${COMMAND_PREFIX}${WORLDSTATUS_COMMAND}**`,
+          value: WORLDSTATUS_DESCRIPTION,
         }
       )
       .setFooter("🦥: That was a lot of explaining");
@@ -154,12 +153,22 @@ export default class MessageEmbedService {
       .setFooter("Fetched by 🦥");
   }
 
-  static getServerStatusMessage(serverStatus) {
+  static getWorldStatusMessage(worldStatus) {
+    if (Object.keys(worldStatus).indexOf("error") > -1)
+      return new Discord.MessageEmbed()
+        .setColor(ERROR_EMBED_COLOR)
+        .setDescription("❌ " + worldStatus.error)
+        .setFooter("🦥: You wasted my time 😪");
+
     let message = new Discord.MessageEmbed();
-    if (serverStatus.status === "Online") {
-      return message.setColor(SUCCESS_EMBED_COLOR).setTitle(`🟢 ${serverStatus.name}: ${serverStatus.status}`);
+    if (worldStatus.status === "Online") {
+      return message
+        .setColor(SUCCESS_EMBED_COLOR)
+        .setTitle(`🟢 ${worldStatus.name}: ${worldStatus.status}`);
     } else {
-      return message.setColor(ERROR_EMBED_COLOR).setTitle(`🔴 ${serverStatus.name}: ${serverStatus.status}`);
+      return message
+        .setColor(ERROR_EMBED_COLOR)
+        .setTitle(`🔴 ${worldStatus.name}: ${worldStatus.status}`);
     }
   }
 }

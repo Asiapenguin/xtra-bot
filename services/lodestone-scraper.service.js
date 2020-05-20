@@ -1,5 +1,6 @@
 import $ from "cheerio";
 import UrlService from "./url.service";
+import { WORLDSTATUS_COMMAND } from "../commands";
 
 export default class LodestoneScraperService {
   constructor() {}
@@ -73,21 +74,26 @@ export default class LodestoneScraperService {
 
   static getLatestUpdates(html) {}
 
-  static getServerStatus(html) {
+  static getWorldStatus(html, worldName) {
     let naDataCenterAether = $("div[data-region='2']", html)
-      .find("li[class='world-dcgroup__item']")
-      .first();
+      .find("li[class='world-dcgroup__item']");
 
-    let serverStatuses = naDataCenterAether.find("div[class='world-list__item']");
+    let worldStatuses = naDataCenterAether.find("div[class='world-list__item']");
 
-    let siren = serverStatuses.filter((i, e) => {
+    let queriedWorld = worldStatuses.filter((i, e) => {
       return (
         $(e).find("div[class='world-list__world_name']").first().children().first().text() ===
-        "Siren"
+        worldName
       );
     });
 
-    let sirenStatus = siren
+    if (queriedWorld.length === 0) {
+      return {
+        error: `Cannot query ${worldName} status. Please check if this is a valid world name and retry. Use \`!help ${WORLDSTATUS_COMMAND}\` if you are stuck.`
+      }
+    }
+
+    let worldStatus = queriedWorld
       .find("div[class='world-list__status_icon']")
       .first()
       .find("i")
@@ -95,8 +101,8 @@ export default class LodestoneScraperService {
       .trim();
 
     return {
-      name: "Siren",
-      status: sirenStatus
+      name: worldName,
+      status: worldStatus
     }
   }
 }

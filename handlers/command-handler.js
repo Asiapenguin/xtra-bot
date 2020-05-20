@@ -26,8 +26,8 @@ export default class CommandHandler {
       case "fc":
         Commands.fc(this.channel, this.args);
         break;
-      case "serverstatus":
-        Commands.serverstatus(this.channel);
+      case "worldstatus":
+        Commands.worldstatus(this.channel, this.args);
         break;
       default:
         Commands.unrecognized(this.command, this.channel);
