@@ -3,6 +3,7 @@ export * from "./fc/fc";
 export * from "./help/help";
 export * from "./ping/ping";
 export * from "./rules/rules";
+export * from "./serverstatus/serverstatus";
 
 export * from "./unrecognized/unrecognized-command";
 

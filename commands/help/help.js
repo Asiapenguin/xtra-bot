@@ -2,6 +2,7 @@ import { COMMANDS_DESCRIPTION, COMMANDS_COMMAND } from "../commands/commands";
 import { FC_DESCRIPTION, FC_COMMAND } from "../fc/fc";
 import { PING_DESCRIPTION, PING_COMMAND } from "../ping/ping";
 import { RULES_DESCRIPTION, RULES_COMMAND } from "../rules/rules";
+import { SERVERSTATUS_COMMAND, SERVERSTATUS_DESCRIPTION } from "../serverstatus/serverstatus";
 
 export const HELP_COMMAND = "help";
 export const HELP_DESCRIPTION = `\`!help <command>\`: the bot will post usage instructions for the \`command\` given`;
@@ -28,6 +29,9 @@ export const help = (channel, args) => {
       break;
     case HELP_COMMAND:
       message = HELP_DESCRIPTION;
+      break;
+    case SERVERSTATUS_COMMAND:
+      message = SERVERSTATUS_DESCRIPTION;
       break;
     default:
       message = "Unrecognized command";

@@ -13,7 +13,10 @@ import {
   PING_DESCRIPTION,
   RULES_COMMAND,
   RULES_DESCRIPTION,
+  SERVERSTATUS_COMMAND,
+  SERVERSTATUS_DESCRIPTION,
 } from "../commands";
+import { SUCCESS_EMBED_COLOR, ERROR_EMBED_COLOR } from "../constants/constants";
 
 export default class MessageEmbedService {
   constructor() {
@@ -46,6 +49,10 @@ export default class MessageEmbedService {
         {
           name: `**${COMMAND_PREFIX}${RULES_COMMAND}**`,
           value: RULES_DESCRIPTION,
+        },
+        {
+          name: `**${COMMAND_PREFIX}${SERVERSTATUS_COMMAND}**`,
+          value: SERVERSTATUS_DESCRIPTION,
         }
       )
       .setFooter("🦥: That was a lot of explaining");
@@ -145,5 +152,14 @@ export default class MessageEmbedService {
       .setURL(topic.link)
       .setImage(topic.image)
       .setFooter("Fetched by 🦥");
+  }
+
+  static getServerStatusMessage(serverStatus) {
+    let message = new Discord.MessageEmbed();
+    if (serverStatus.status === "Online") {
+      return message.setColor(SUCCESS_EMBED_COLOR).setTitle(`🟢 ${serverStatus.name}: ${serverStatus.status}`);
+    } else {
+      return message.setColor(ERROR_EMBED_COLOR).setTitle(`🔴 ${serverStatus.name}: ${serverStatus.status}`);
+    }
   }
 }
