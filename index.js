@@ -1,5 +1,6 @@
 require("dotenv").config();
-// import cron from "node-cron";
+require("./database/redis");
+import cron from "node-cron";
 
 import Discord from "discord.js";
 const client = new Discord.Client();
@@ -12,9 +13,8 @@ const messageHandler = new MessageHandler(client);
 const startupHandler = new StartupHandler(client);
 
 client.on("ready", () => {
-  // cron.schedule("*/5 * * * * *", () => runLatestLodestonePosts())
-  // runLatestLodestonePosts(client)
-  // console.log(client.channels.cache.find(channel => channel.name == "news"));
+  // At every 0th, 6th, 12th, 18th hour schedule
+  cron.schedule("0 0,6,12,18 * * *", () => runLatestLodestonePosts(client))
   return startupHandler.handle();
 });
 

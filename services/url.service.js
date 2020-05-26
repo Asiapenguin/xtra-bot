@@ -15,11 +15,11 @@ export default class UrlService {
   }
 
   static getLodestoneMaintenanceUrl() {
-    return `${this.getBaseUrl()}/lodestone/category/2`;
+    return `${this.getBaseUrl()}/lodestone/news/category/2`;
   }
   
   static getLodestoneUpdatesUrl() {
-    return `${this.getBaseUrl()}/lodestone/category/3`;
+    return `${this.getBaseUrl()}/lodestone/news/category/3`;
   }
 
   static getLodestoneWorldStatusUrl() {
