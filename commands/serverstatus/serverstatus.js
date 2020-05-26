@@ -1,1 +1,0 @@
-// TODO: Return the current status of FREE_COMPANY_SERVER

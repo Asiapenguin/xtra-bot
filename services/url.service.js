@@ -21,4 +21,8 @@ export default class UrlService {
   static getLodestoneUpdatesUrl() {
     return `${this.getBaseUrl()}/lodestone/news/category/3`;
   }
+
+  static getLodestoneWorldStatusUrl() {
+    return `${this.getBaseUrl()}/lodestone/worldstatus`;
+  }
 }

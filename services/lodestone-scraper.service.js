@@ -1,5 +1,6 @@
 import $ from "cheerio";
 import UrlService from "./url.service";
+import { WORLDSTATUS_COMMAND } from "../commands";
 
 export default class LodestoneScraperService {
   constructor() {}
@@ -105,5 +106,37 @@ export default class LodestoneScraperService {
       title: latestUpdateTitle,
       link: UrlService.getBaseUrl() + latestUpdateLink,
     };
+  }
+
+  static getWorldStatus(html, worldName) {
+    let naDataCenterAether = $("div[data-region='2']", html)
+      .find("li[class='world-dcgroup__item']");
+
+    let worldStatuses = naDataCenterAether.find("div[class='world-list__item']");
+
+    let queriedWorld = worldStatuses.filter((i, e) => {
+      return (
+        $(e).find("div[class='world-list__world_name']").first().children().first().text() ===
+        worldName
+      );
+    });
+
+    if (queriedWorld.length === 0) {
+      return {
+        error: `Cannot query ${worldName} status. Please check if this is a valid world name and retry. Use \`!help ${WORLDSTATUS_COMMAND}\` if you are stuck.`
+      }
+    }
+
+    let worldStatus = queriedWorld
+      .find("div[class='world-list__status_icon']")
+      .first()
+      .find("i")
+      .attr("data-tooltip")
+      .trim();
+
+    return {
+      name: worldName,
+      status: worldStatus
+    }
   }
 }
