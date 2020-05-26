@@ -13,8 +13,8 @@ const messageHandler = new MessageHandler(client);
 const startupHandler = new StartupHandler(client);
 
 client.on("ready", () => {
-  // At every 0th, 6th, 12th, 18th hour schedule
-  cron.schedule("0 0,6,12,18 * * *", () => runLatestLodestonePosts(client))
+  // At every 2 hour schedule
+  cron.schedule("0 */2 * * *", () => runLatestLodestonePosts(client))
   return startupHandler.handle();
 });
 
